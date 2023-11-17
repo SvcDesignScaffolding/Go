@@ -1,5 +1,5 @@
 #第一阶段：编译阶段
-FROM golang:1.18-alpine as builder
+FROM golang:1.21-alpine as builder
 
 WORKDIR /app
 COPY . .
@@ -10,5 +10,5 @@ FROM alpine:3.15 as runner
 
 WORKDIR /app
 COPY --from=builder /app/main .
-EXPOSE 8080
+EXPOSE 80
 CMD ["./main"]
