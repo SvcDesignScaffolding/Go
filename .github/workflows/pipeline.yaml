@@ -27,29 +27,31 @@ jobs:
 
       - name: Build
         run: |
-          go build -o main
+          go mod tidy && go build && tar -czvpf example_pkg-0.1.0.tar.gz example_pkg
+
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          asset_name: example_pkg-0.1.0.tar.gz
+          file: example_pkg-0.1.0.tar.gz
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "Release v0.1.0"
 
   test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
-        with:
-          name: build
 
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt install -y golang-1.18 
 
-      - name: Run App
-        run: |
-          ./main
-
       - name: Run tests
         run: |
-          go test -v
+          go mod tidy && go test -v
   docker-image:
     runs-on: ubuntu-latest
     name: Build image
