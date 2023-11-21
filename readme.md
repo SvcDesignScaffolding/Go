@@ -43,43 +43,6 @@ example_pkg
 - 查询 API：curl http://localhost:8080/api/query
 - 插入 API：curl -X POST http://localhost:8080/api/insert
 
-# API 参考
-
-API 可以在本地通过 http://localhost:8080/ 访问。确保服务器正在运行后进行请求。
-
-## 端点
-
-| 端点 | 方法 | 描述 |
-|---|---|---|
-| / | GET | 返回问候消息 |
-| /api/query | GET | 返回查询成功消息 |
-| /api/insert | POST | 返回插入成功消息 |
-
-## 方法
-
-| 方法 | 说明 |
-|---|---|
-| GET | 获取资源 |
-| POST | 创建资源 |
-| PUT | 更新资源 |
-| DELETE | 删除资源 |
-
-## 描述
-
-| 端点 | 描述 |
-|---|---|
-| / | 返回问候消息。 |
-| /api/query | 返回查询成功消息。 |
-| /api/insert | 返回插入成功消息。 |
-
-## 示例请求
-
-| 端点 | 请求方法 | 请求参数 | 预期输出 |
-|---|---|---|---|
-| / | GET | 无 | {"message": "Hello, world!"} |
-| /api/query | GET | 无 | {"message": "查询成功"} |
-| /api/insert | POST | 无 | {"message": "插入成功"} |
-
 # 测试
 
 ## 单元测试
@@ -89,7 +52,8 @@ go test
 
 # CICD
 
-- 流水线配置文件 .github/workflows/pipeline.yaml 由四个阶段组成：
+## 流水线配置文件 
+配置文件位于 .github/workflows/pipeline.yaml 由四个阶段组成：
 
 1. 构建测试：此阶段从源代码构建 APP, 并运行测试套件，以确保APP 正常工作。
 2. Docker 镜像：此阶段构建一个包含 APP 的 Docker 镜像。
@@ -112,6 +76,27 @@ go test
 - REPO: Onwalk 制品存储库的名称。
 - IMAGE: 要构建的 Docker 镜像的名称。
 - TAG: 要分配给 Docker 镜像的标签。
+
+# API 参考
+
+API 可以在本地通过 http://localhost:8080/ 访问。确保服务器正在运行后进行请求。
+
+## 端点
+
+| 端点 | 方法 | 描述 |
+|---|---|---|
+| / | GET | 返回问候消息 |
+| /api/query | GET | 返回查询成功消息 |
+| /api/insert | POST | 返回插入成功消息 |
+
+## 示例请求
+
+| 端点 | 请求方法 | 请求参数 | 预期输出 |
+|---|---|---|---|
+| / | GET | 无 | {"message": "Hello, world!"} |
+| /api/query | GET | 无 | {"message": "查询成功"} |
+| /api/insert | POST | 无 | {"message": "插入成功"} |
+
 
 # 制品下载地址
 1. GitHub Release: https://github.com/scaffolding-design/go/releases/tag/main
